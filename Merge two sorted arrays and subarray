@@ -1,0 +1,133 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int m = scn.nextInt();
+        int[] A = new int[n];
+        for(int i=0;i<n;i++){
+            A[i] = scn.nextInt();
+        }
+        
+        int[] B = new int[m];
+        for(int i=0;i<m;i++){
+            B[i] = scn.nextInt();
+        }
+        
+        int[] C = MergeTwoSortedArray(A,B);
+        
+        for(int i=0;i<C.length;i++){
+            System.out.print(C[i]+" ");
+        }
+
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int[] A = new int[n];
+        for(int i=0;i<n;i++){
+            A[i] = scn.nextInt();
+        }
+        
+        int s = scn.nextInt();
+        int m = scn.nextInt();
+        int e = scn.nextInt();
+        
+        int[] C = MergeTwoSortedSubArray(A, s, m, e);
+        
+        for(int i=0;i<C.length;i++){
+            System.out.print(C[i]+" ");
+        }
+
+    }
+    
+    public static int[] MergeTwoSortedSubArray(int[] a,int s, int m, int e){
+        int n = a.length;
+        int[] temp = new int[e - s + 1];
+        int p1 = s;
+        int p2 = m+1;
+        int p3 = 0;
+        
+        
+        while(p1<=m && p2<=e){
+            if(a[p1] < a[p2]){
+                temp[p3] = a[p1];
+                p3++;
+                p1++;
+            }else{
+                temp[p3] = a[p2];
+                p3++;
+                p2++;
+            }
+        }
+        
+        while(p1 <= m){
+            temp[p3] = a[p1];
+            p3++;
+            p1++;
+        }
+        
+        while(p2 <= e){
+            temp[p3] = a[p2];
+            p3++;
+            p2++;
+        }
+        
+        for(int i=0;i<temp.length;i++){
+            a[s+i] = temp[i];
+        }
+        return a;
+        
+    }
+}
+
+
+
+    }
+    
+    public static int[] MergeTwoSortedArray(int[] a, int[] b){
+        int n = a.length;
+        int m = b.length;
+        int[] c = new int[n + m];
+        int p1 = 0;
+        int p2 = 0;
+        int p3 = 0;
+        
+        
+        while(p1<n && p2<m){
+            if(a[p1] < b[p2]){
+                c[p3] = a[p1];
+                p3++;
+                p1++;
+            }else{
+                c[p3] = b[p2];
+                p3++;
+                p2++;
+            }
+        }
+        
+        while(p1 < n){
+            c[p3] = a[p1];
+            p3++;
+            p1++;
+        }
+        
+        while(p2 < m){
+            c[p3] = b[p2];
+            p3++;
+            p2++;
+        }
+        
+        return c;
+        
+    }
+}
+
