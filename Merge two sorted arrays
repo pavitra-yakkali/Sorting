@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int m = scn.nextInt();
+        int[] A = new int[n];
+        for(int i=0;i<n;i++){
+            A[i] = scn.nextInt();
+        }
+        
+        int[] B = new int[m];
+        for(int i=0;i<m;i++){
+            B[i] = scn.nextInt();
+        }
+        
+        int[] C = MergeTwoSortedArray(A,B);
+        
+        for(int i=0;i<C.length;i++){
+            System.out.print(C[i]+" ");
+        }
+
+    }
+    
+    public static int[] MergeTwoSortedArray(int[] a, int[] b){
+        int n = a.length;
+        int m = b.length;
+        int[] c = new int[n + m];
+        int p1 = 0;
+        int p2 = 0;
+        int p3 = 0;
+        
+        
+        while(p1<n && p2<m){
+            if(a[p1] < b[p2]){
+                c[p3] = a[p1];
+                p3++;
+                p1++;
+            }else{
+                c[p3] = b[p2];
+                p3++;
+                p2++;
+            }
+        }
+        
+        while(p1 < n){
+            c[p3] = a[p1];
+            p3++;
+            p1++;
+        }
+        
+        while(p2 < m){
+            c[p3] = b[p2];
+            p3++;
+            p2++;
+        }
+        
+        return c;
+        
+    }
+}
+
